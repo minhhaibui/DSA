@@ -1,34 +1,74 @@
 package DSA_Array;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Two_dimensional_array {
+    int n;
+    int [][] matrixA;
+    int [][] matrixB;
+    public Two_dimensional_array(int n) {
+        this.n = n;
+        matrixA = new int [n][n];
+        matrixB = new int [n][n];
+        initMatrix();
+    }
+    public void initMatrix(){
+        Random rd = new Random();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                matrixA[i][j]=rd.nextInt(10);
+                matrixB[i][j]=rd.nextInt(10);
+            }
+        }
+    }
+    public void printMatrix(int [][] matrix){
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
+                System.out.print(matrix[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+    public void printMatrixA(){
+        printMatrix(matrixA);
+    }
+    public void printMatrixB(){
+        printMatrix(matrixB);
+    }
+
+    public int[][] sumMatrix(){
+        int [][]sumMatrix = new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                sumMatrix[i][j]=matrixA[i][j]+matrixB[i][j];
+            }
+        }
+       return sumMatrix;
+    }
+
+    public int[][] multiplyMatrix(){
+        int [][]multiMatrix = new int[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                multiMatrix[i][j]=0;
+                for(int k=0;k<n;k++){
+                    multiMatrix[i][j]+=matrixA[i][k]*matrixB[k][j];
+                }
+            }
+        }
+        return multiMatrix;
+    }
+
+
         public static void main(String[] args) {
-            Random rd = new Random();
-            Scanner sc = new Scanner(System.in);
-            System.out.println("nhap n: ");
-            int n = sc.nextInt();
-            System.out.println("nhap m: ");
-            int m=sc.nextInt();
-
-            int [][] arr=new int[n][m];
-
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                   arr[i][j]= rd.nextInt(1000);
-                }
-            }
-
-
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    System.out.print(arr[i][j]);
-                    if (j < m - 1) System.out.print(", ");
-                }
-                System.out.println();
-            }
-
+            Two_dimensional_array matrix = new Two_dimensional_array(5);
+            System.out.println("matrix A:");
+            matrix.printMatrixA();
+            System.out.println("matrix B:");
+            matrix.printMatrixB();
+            int [][] sumMatrix = matrix.sumMatrix();
+            System.out.println("sum matrix:");
+            matrix.printMatrix(sumMatrix);
         }
 
 }
