@@ -28,6 +28,18 @@ public class Test {
                 }
             };
 
+            int s=0;
+            int i=1;
+            int n=5;
+            while(i < n){
+                int j= n-i;
+                while(j >= i){
+                    s=s+1;
+                    j=j-i;
+                }
+                i=j+1;
+            }
+
 
             System.out.println(count);
         }
